@@ -7,6 +7,9 @@ import authRoutes from "./routes/authRoutes";
 import hustlerRoutes from "./routes/hustlerRoutes";
 
 const fastify = Fastify();
+fastify.get('/', function(req,res){
+  res.send('Working')
+})
 fastify.register(fastifyCors);
 fastify.register(authRoutes, { prefix: "/auth" });
 fastify.register(userRoutes, { prefix: "/users" });
