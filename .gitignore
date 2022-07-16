@@ -1,0 +1,10 @@
+node_modules
+dist
+*.log
+dev
+coverage
+*.log
+*.js
+plan
+data
+database-data
