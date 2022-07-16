@@ -13,7 +13,7 @@ fastify.register(userRoutes, { prefix: "/users" });
 fastify.register(hustlerRoutes, { prefix: "/hustlers" });
 
 const CONNECTION_URL = process.env.CONNECTION_URL || "";
-
+const PORT = process.env.PORT;
 mongoose
   .connect(CONNECTION_URL, {
     useNewUrlParser: true,
@@ -23,7 +23,13 @@ mongoose
     console.log("connected to database");
     const serverPort = parseInt(process.env.PORT || "");
     const port = Number.isInteger(serverPort) ? serverPort : 3000;
-    await fastify.listen({ port: port });
+    await fastify.listen({port: port},function (err, address) {
+      if (err) {
+        console.log(err)
+      }else{
+        console.log(address)
+      }
+    });
     console.log(`Server started at port ${port}`);
   })
   .catch((err) => {
